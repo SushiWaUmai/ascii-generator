@@ -1,8 +1,4 @@
-#ifndef TO_TEXT_H_
-#define TO_TEXT_H_ 
-
-#include "img.h"
-#include <assert.h>
+#include "./to_text.h"
 
 const char* table = ",.\"~!+:vcIow0XP$#RB@";
 const int table_length = 20;
@@ -35,6 +31,3 @@ char* img_to_text(image img) {
 
   return text;
 }
-
-
-#endif // TO_TEXT_H_ 

@@ -1,3 +1,7 @@
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+
 #include <stdlib.h>
 #include "img.h"
 #include "to_text.h"
@@ -11,7 +15,6 @@ void show(char* buffer, int width, int height) {
 
 int main(void) {
   const char* file_name = "cool_img.jpg";
-
   printf("Loading file %s...\n", file_name);
   image img = load_image(file_name);
   image gray = to_gray_img(img);

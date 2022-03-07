@@ -1,22 +1,4 @@
-#ifndef IMG_H_
-#define IMG_H_
-#include <stdlib.h>
-#include <assert.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_RESIZE_IMPLEMENTATION
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-
-#include "stb_image.h"
-#include "stb_image_resize.h"
-#include "stb_image_write.h"
-
-typedef struct {
-  int width;
-  int height;
-  int channels;
-  unsigned char* data;
-} image;
+#include "./img.h"
 
 image create_image(int width, int height, int channels, unsigned char* data) {
   return (image) {
@@ -37,11 +19,11 @@ image load_image(const char* path) {
   return create_image(width, height, channels, data);;
 }
 
-image save_image(const char* path, image img) {
+void save_image(const char* path, image img) {
   stbi_write_png(path, img.width, img.height, img.channels, img.data, img.width * img.channels);
 }
 
-image save_gray_image(const char* path, image img) {
+void save_gray_image(const char* path, image img) {
   // check if image is gray
   assert(img.channels == 1);
   unsigned char* new_data = (unsigned char*)malloc(sizeof(unsigned char) * img.width * img.height * 3);
@@ -82,8 +64,8 @@ image to_gray_img(image img) {
   return create_image(img.width, img.height, 1, new_data);
 }
 
+
 void free_image(image img) {
   stbi_image_free(img.data);
 }
 
-#endif // IMG_H_
